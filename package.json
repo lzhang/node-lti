@@ -2,7 +2,7 @@
   "name": "lti-tp",
   "version": "0.0.1",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=6.0.0"
   },
   "main": "src/index.js",
   "author": "Lewis Zhang <lewiszhang@gmail.com>",

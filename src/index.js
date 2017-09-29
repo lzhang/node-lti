@@ -1,9 +1,10 @@
 const checkNonceFromMemory = require('./checkNonce')
 const isObject = require('isobject')
-const { URL } = require('url')
+const { URL, parse } = require('url')
 const buildParams = require('./buildParams')
 const { LtiNonceError, LtiSignatureError } = require('./errors')
 const { sign } = require('oauth-sign')
+const querystring = require('querystring')
 
 function validLti(secret, body, originalUrl, checkNonce = checkNonceFromMemory) {
   if (!secret) {
@@ -42,7 +43,16 @@ function validLti(secret, body, originalUrl, checkNonce = checkNonceFromMemory) 
   if (typeof checkNonce !== 'function') {
     throw new TypeError('Parameter checkNonce must be a function')
   }
-  const parsedUrl = new URL(originalUrl)
+  if (!originalUrl) {
+    throw new TypeError('Invalid URL')
+  }
+  let parsedUrl
+  if (URL) {
+    parsedUrl = new URL(originalUrl)
+  } else {
+    parsedUrl = parse(originalUrl)
+    parsedUrl.searchParams = querystring.parse(parsedUrl.query)
+  }
   if (
     !checkNonce(
       body.oauth_consumer_key,

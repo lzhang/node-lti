@@ -47,27 +47,27 @@ describe('validLti', () => {
   test('should throw on missing originalUrl', () => {
     expect(() => {
       validLti('secret', mockBody)
-    }).toThrow(/Invalid URL/)
+    }).toThrow(/(Invalid URL|Parameter "url" must be a string)/)
 
     expect(() => {
       validLti('secret', mockBody, null)
-    }).toThrow(/Invalid URL/)
+    }).toThrow(/(Invalid URL|Parameter "url" must be a string)/)
 
     expect(() => {
       validLti('secret', mockBody, undefined)
-    }).toThrow(/Invalid URL/)
+    }).toThrow(/(Invalid URL|Parameter "url" must be a string)/)
 
     expect(() => {
       validLti('secret', mockBody, '')
-    }).toThrow(/Invalid URL/)
+    }).toThrow(/(Invalid URL|Parameter "url" must be a string)/)
 
     expect(() => {
       validLti('secret', mockBody, {})
-    }).toThrow(/Invalid URL/)
+    }).toThrow(/(Invalid URL|Parameter "url" must be a string)/)
 
     expect(() => {
       validLti('secret', mockBody, [])
-    }).toThrow(/Invalid URL/)
+    }).toThrow(/(Invalid URL|Parameter "url" must be a string)/)
   })
 
   test('should throw if checkNonce is not a function', () => {

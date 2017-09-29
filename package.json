@@ -1,0 +1,23 @@
+{
+  "name": "lti-tp",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "main": "src/index.js",
+  "author": "Lewis Zhang <lewiszhang@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest",
+    "test:ci": "jest --coverage && cat ./coverage/lcov.info | coveralls"
+  },
+  "dependencies": {
+    "extendable-error-class": "^0.1.1",
+    "oauth-sign": "^0.8.2",
+    "ramda": "^0.24.1"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.0",
+    "jest": "^21.1.0"
+  }
+}
